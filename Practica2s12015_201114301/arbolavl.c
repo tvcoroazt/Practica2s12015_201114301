@@ -6,6 +6,9 @@
 int i=0, d=0, fe=0;
 
 
+
+
+
 void add(arbol *avl, int valor, nodo *padre){
     if(avl->raiz==NULL){
         nodo *n=malloc(sizeof(nodo));
@@ -60,7 +63,7 @@ int factorEquilibrio(nodo *raiz){
 }
 
 
-node * insert(node *T,int x)
+node *insert(node *T,int x)
 {
     if(T==NULL)
     {
@@ -73,7 +76,7 @@ node * insert(node *T,int x)
         if(x > T->data)
         {
             T->right=insert(T->right,x);
-            if(FE(T)==-2){
+            if(factorequi(T)==-2){
                 if(x>T->right->data){
                     T=RR(T);
                 }else{
@@ -85,7 +88,7 @@ node * insert(node *T,int x)
             if(x<T->data)
             {
                 T->left=insert(T->left,x);
-                if(FE(T)==2){
+                if(factorequi(T)==2){
                     if(x < T->left->data){
                         T=LL(T);
                     }else{
@@ -93,11 +96,11 @@ node * insert(node *T,int x)
                     }
                 }
             }
-        T->ht=height(T);
+        T->ht=tamanoarbol(T);
     return(T);
 }
 
-int height(node *T)
+int tamanoarbol(node *T)
 {
    int lh,rh;
    if(T==NULL){
@@ -117,14 +120,14 @@ int height(node *T)
       return(lh);
    return(rh);
 }
-node * rotateright(node *x)
+node *derecharota(node *x)
 {
     node *y;
     y=x->left;
     x->left=y->right;
     y->right=x;
-    x->ht=height(x);
-    y->ht=height(y);
+    x->ht=tamanoarbol(x);
+    y->ht=tamanoarbol(y);
    return(y);
 }
 node * rotateleft(node *x)
@@ -133,8 +136,8 @@ node * rotateleft(node *x)
     y=x->right;
     x->right=y->left;
     y->left=x;
-    x->ht=height(x);
-    y->ht=height(y);
+    x->ht=tamanoarbol(x);
+    y->ht=tamanoarbol(y);
    return(y);
 }
 
@@ -144,27 +147,27 @@ node *RR(node *T)
     return(T);
 }
 
-node * LL(node *T)
+node *LL(node *T)
 {
-   T=rotateright(T);
+   T=derecharota(T);
    return(T);
 }
 
 node *LR(node *T)
 {
    T->left=rotateleft(T->left);
-   T=rotateright(T);
+   T=derecharota(T);
    return(T);
 }
 
-node * RL(node *T)
+node *RL(node *T)
 {
-   T->right=rotateright(T->right);
+   T->right=derecharota(T->right);
    T=rotateleft(T);
    return(T);
 }
 
-int FE(node *T)
+int factorequi(node *T)
 {
    int lh,rh;
    if(T==NULL){
