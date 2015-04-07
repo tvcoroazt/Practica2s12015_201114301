@@ -31,10 +31,20 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="arbol.cpp" />
 		<Unit filename="arbol.h" />
-		<Unit filename="binario.cpp" />
+		<Unit filename="arbolavl.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="arbolavl.h" />
+		<Unit filename="azteca.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="azteca.h" />
 		<Unit filename="binario.h" />
+		<Unit filename="lista.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="lista.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
